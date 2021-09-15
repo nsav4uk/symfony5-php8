@@ -1,4 +1,4 @@
-
+.idea
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -14,3 +14,8 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs.dist
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###

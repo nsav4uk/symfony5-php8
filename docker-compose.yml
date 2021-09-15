@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        restart: unless-stopped
+        ports:
+            - "81:80"
+        volumes:
+            - ./:/var/www/html
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        links:
+            - php
+        depends_on:
+            - php
+
+    mysql:
+        image: mysql:latest
+        ports:
+            - "3306:3306"
+        container_name: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=db_name_t
+            - MYSQL_USER=symfony
+            - MYSQL_PASSWORD=symfony
+        volumes:
+            - revmulti-mysql-storage:/var/lib/mysql
+
+    php:
+        privileged: true
+        restart: unless-stopped
+        build: ./docker/php
+        container_name: php-fpm
+        volumes:
+            - .:/var/www/html:delegated
+        links:
+            - mysql
+volumes:
+    revmulti-mysql-storage:

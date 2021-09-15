@@ -1,0 +1,16 @@
+login:
+  title: Log In!
+  header: Please sign in
+
+registration:
+  title: Registration
+
+form:
+  name: Name
+  sku: Sku
+  email: Your email
+  password: Your password
+  submit: Submit
+  signIn: Sign In
+  signUp: Sign Up
+
